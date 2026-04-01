@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepStrata — Poverty Point</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: Georgia, serif;
+            background: #0a0a0a;
+            color: #e8e0d0;
+            line-height: 1.7;
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 4rem 2rem 3rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: normal;
+            letter-spacing: 0.05em;
+            color: #f5ede0;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: #c8b89a;
+            font-style: italic;
+        }
+
+        /* ORIENTATION */
+        .orientation {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .orientation p {
+            font-size: 1.15rem;
+            color: #d4c9b5;
+            margin-bottom: 1.5rem;
+        }
+
+        .orientation .hook {
+            font-size: 1.3rem;
+            color: #e8dcc8;
+            font-style: italic;
+            border-left: 3px solid #8b6914;
+            padding-left: 1.5rem;
+            text-align: left;
+            margin: 2rem 0;
+        }
+
+        /* LIDAR SECTION */
+        .lidar-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .lidar-section img {
+            width: 100%;
+            max-width: 800px;
+            border: 1px solid #333;
+        }
+
+        .lidar-caption {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #8a7a65;
+            font-style: italic;
+        }
+
+        .lidar-caption strong {
+            color: #a09080;
+        }
+
+        /* CHAT SECTION */
+        .chat-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 2rem 6rem;
+        }
+
+        .chat-intro {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #c8b89a;
+            font-style: italic;
+        }
+
+        /
