@@ -6,30 +6,41 @@
     <title>DeepStrata — Poverty Point</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #8b6914;
-            --gold-light: #c8a84b;
-            --gold-pale: #e8d5a0;
-            --cream: #f0e6d0;
-            --text: #e8e0d0;
-            --text-dim: #c8b89a;
-            --text-muted: #8a7a65;
-            --bg: #0a0a0a;
-            --bg-mid: #111008;
-            --bg-card: #141210;
-            --border: #2a2418;
-            --border-gold: #3a2e14;
+            --bg-hero:       #0f0c08;
+            --bg-dark:       #1a1510;
+            --bg-mid:        #2a2218;
+            --bg-light:      #f5f0e8;
+            --bg-paper:      #ede8dc;
+            --bg-card:       #e8e2d4;
+
+            --gold:          #9a7820;
+            --gold-light:    #c8a030;
+            --gold-pale:     #d4b060;
+            --gold-rule:     #b89040;
+
+            --text-on-dark:  #e0d8c8;
+            --text-dim:      #b0a890;
+            --text-muted:    #706858;
+
+            --text-on-light: #1e1a14;
+            --text-body:     #2e2820;
+            --text-light-dim:#5a5040;
+
+            --border-dark:   #3a3020;
+            --border-light:  #c8bea8;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'EB Garamond', Georgia, serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
+            font-family: 'Source Serif 4', Georgia, serif;
+            background: var(--bg-light);
+            color: var(--text-body);
+            line-height: 1.75;
             overflow-x: hidden;
         }
 
@@ -38,8 +49,9 @@
             position: relative;
             width: 100%;
             height: 100vh;
-            min-height: 600px;
+            min-height: 580px;
             overflow: hidden;
+            background: var(--bg-hero);
         }
 
         .hero img {
@@ -48,17 +60,18 @@
             object-fit: cover;
             object-position: center 40%;
             display: block;
+            opacity: 0.82;
         }
 
         .hero-overlay {
             position: absolute;
             inset: 0;
             background: linear-gradient(
-                to bottom,
-                rgba(0,0,0,0.15) 0%,
-                rgba(0,0,0,0.05) 40%,
-                rgba(5,4,2,0.6) 70%,
-                rgba(5,4,2,0.92) 100%
+                160deg,
+                rgba(15,12,8,0.25) 0%,
+                rgba(15,12,8,0.05) 35%,
+                rgba(15,12,8,0.55) 70%,
+                rgba(15,12,8,0.9) 100%
             );
         }
 
@@ -67,133 +80,174 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 5rem 3rem 3.5rem;
+            padding: 5rem 4rem 4rem;
+            max-width: 900px;
         }
 
         .hero-eyebrow {
             font-family: 'Cinzel', serif;
-            font-size: 0.65rem;
-            letter-spacing: 0.35em;
-            color: var(--gold-light);
+            font-size: 0.62rem;
+            font-weight: 400;
+            letter-spacing: 0.38em;
+            color: var(--gold-pale);
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 1.1rem;
             opacity: 0;
-            animation: fadeUp 1s ease 0.3s forwards;
+            animation: fadeUp 0.9s ease 0.4s forwards;
         }
 
         .hero-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.8rem, 6vw, 5.5rem);
-            font-weight: 300;
-            letter-spacing: 0.04em;
-            color: var(--cream);
-            line-height: 1.1;
-            margin-bottom: 0.75rem;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(3rem, 6.5vw, 6rem);
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: #f0e8d8;
+            line-height: 1.05;
+            margin-bottom: 1.1rem;
             opacity: 0;
-            animation: fadeUp 1s ease 0.5s forwards;
+            animation: fadeUp 0.9s ease 0.6s forwards;
+        }
+
+        .hero-rule {
+            width: 56px;
+            height: 2px;
+            background: var(--gold-rule);
+            margin-bottom: 1.2rem;
+            opacity: 0;
+            animation: fadeUp 0.9s ease 0.8s forwards;
         }
 
         .hero-subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text-dim);
-            font-style: italic;
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
             font-weight: 300;
+            color: var(--text-dim);
+            max-width: 560px;
+            line-height: 1.65;
             opacity: 0;
-            animation: fadeUp 1s ease 0.7s forwards;
+            animation: fadeUp 0.9s ease 1s forwards;
         }
 
-        .hero-divider {
-            width: 60px;
-            height: 1px;
-            background: var(--gold);
-            margin: 1.25rem 0;
-            opacity: 0;
-            animation: fadeUp 1s ease 0.9s forwards;
-        }
-
-        .scroll-hint {
-            position: absolute;
-            bottom: 2rem;
-            right: 3rem;
+        /* ── SHARED ── */
+        .section-eyebrow {
+            display: block;
             font-family: 'Cinzel', serif;
             font-size: 0.6rem;
-            letter-spacing: 0.3em;
-            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.42em;
+            color: var(--gold);
             text-transform: uppercase;
-            opacity: 0;
-            animation: fadeIn 1s ease 1.5s forwards;
+            margin-bottom: 1.75rem;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.4rem, 2.8vw, 2rem);
+            font-weight: 600;
+            color: var(--text-on-light);
+            letter-spacing: 0.03em;
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+        }
+
+        .gold-rule {
+            width: 48px;
+            height: 2px;
+            background: var(--gold-rule);
+            margin-bottom: 2rem;
+        }
+
+        /* ── DARK BAND ── */
+        .dark-band {
+            background: var(--bg-dark);
+            padding: 5rem 2rem;
+        }
+
+        .dark-band-inner {
+            max-width: 760px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .dark-band .section-eyebrow { color: var(--gold-pale); }
+
+        .dark-band .section-title {
+            color: #f0e8d8;
+            margin-bottom: 1.5rem;
+        }
+
+        .dark-band p {
+            font-size: 1.12rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            margin-bottom: 1.4rem;
+        }
+
+        .dark-band p strong {
+            color: var(--text-on-dark);
+            font-weight: 400;
+        }
+
+        .pull-quote {
+            border-left: 2px solid var(--gold-rule);
+            padding: 1rem 2rem;
+            text-align: left;
+            margin: 2.5rem 0;
+            background: rgba(154,120,32,0.07);
+        }
+
+        .pull-quote p {
+            font-size: 1.22rem !important;
+            font-weight: 400 !important;
+            color: #e8dfc8 !important;
+            margin: 0 !important;
         }
 
         /* ── ORIENTATION ── */
         .orientation {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 5rem 2rem 4rem;
-            text-align: center;
+            background: var(--bg-light);
+            padding: 5rem 2rem;
         }
 
-        .section-label {
-            font-family: 'Cinzel', serif;
-            font-size: 0.6rem;
-            letter-spacing: 0.4em;
-            color: var(--gold);
-            text-transform: uppercase;
-            margin-bottom: 2.5rem;
-            display: block;
+        .orientation-inner {
+            max-width: 760px;
+            margin: 0 auto;
         }
 
         .orientation p {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
             font-weight: 400;
+            color: var(--text-body);
+            margin-bottom: 1.4rem;
         }
 
         .orientation p strong {
-            color: var(--cream);
-            font-weight: 400;
-        }
-
-        .hook {
-            font-size: 1.35rem !important;
-            color: var(--cream) !important;
-            font-style: italic;
-            border-left: 2px solid var(--gold);
-            padding: 1rem 2rem !important;
-            text-align: left;
-            margin: 2.5rem 0 !important;
-            background: linear-gradient(to right, rgba(139,105,20,0.08), transparent);
+            color: var(--text-on-light);
+            font-weight: 600;
         }
 
         /* ── LIDAR ── */
         .lidar-section {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 2rem 2rem 5rem;
-            text-align: center;
+            background: var(--bg-paper);
+            padding: 5rem 2rem;
         }
+
+        .lidar-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .lidar-header { margin-bottom: 2.5rem; }
 
         .lidar-frame {
             position: relative;
-            display: inline-block;
-            width: 100%;
+            border: 1px solid var(--border-light);
         }
 
-        .lidar-frame::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border: 1px solid var(--border-gold);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .lidar-section img {
+        .lidar-frame img {
             width: 100%;
-            max-width: 860px;
             display: block;
-            filter: brightness(0.9) contrast(1.05);
+            filter: brightness(0.95) contrast(1.05);
         }
 
         .lidar-badge {
@@ -202,141 +256,170 @@
             left: 1rem;
             font-family: 'Cinzel', serif;
             font-size: 0.55rem;
-            letter-spacing: 0.3em;
-            color: var(--gold-light);
+            font-weight: 400;
+            letter-spacing: 0.28em;
+            color: var(--gold-pale);
             text-transform: uppercase;
-            background: rgba(10,8,4,0.85);
-            padding: 0.4rem 0.8rem;
-            border: 1px solid var(--border-gold);
+            background: rgba(15,12,8,0.82);
+            padding: 0.4rem 0.85rem;
+            border: 1px solid rgba(184,144,64,0.35);
         }
 
         .lidar-caption {
-            margin-top: 1.25rem;
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            font-style: italic;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--text-light-dim);
             line-height: 1.6;
         }
 
         .lidar-caption strong {
-            color: #907860;
-            font-style: normal;
-            font-weight: 400;
+            color: var(--text-body);
+            font-weight: 600;
         }
 
-        /* ── CHAT SECTION ── */
+        /* ── DIAGRAMS ── */
+        .diagrams-section {
+            background: var(--bg-light);
+            padding: 5rem 2rem;
+        }
+
+        .diagrams-inner { max-width: 1040px; margin: 0 auto; }
+        .diagrams-header { margin-bottom: 3rem; }
+
+        .diagrams-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (max-width: 720px) {
+            .diagrams-grid { grid-template-columns: 1fr; }
+        }
+
+        .diagram-card {
+            background: var(--bg-paper);
+            border: 1px solid var(--border-light);
+            padding: 1.75rem;
+        }
+
+        .diagram-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.25rem;
+        }
+
+        .diagram-card svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .diagram-note {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-light-dim);
+            line-height: 1.6;
+        }
+
+        /* ── CHAT ── */
         .chat-section {
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 2rem 2rem 6rem;
+            background: var(--bg-dark);
+            padding: 5rem 2rem 6rem;
         }
 
-        .chat-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
+        .chat-inner { max-width: 800px; margin: 0 auto; }
 
-        .chat-intro {
-            font-size: 1.1rem;
+        .chat-header { margin-bottom: 3rem; }
+        .chat-header .section-eyebrow { color: var(--gold-pale); }
+        .chat-header .section-title { color: #f0e8d8; }
+
+        .chat-header p {
+            font-size: 1.05rem;
+            font-weight: 300;
             color: var(--text-dim);
-            font-style: italic;
-            margin-top: 0.75rem;
-        }
-
-        /* Seed questions */
-        .seed-questions {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-            margin-bottom: 2.5rem;
+            max-width: 600px;
         }
 
         .seed-label {
+            display: block;
             font-family: 'Cinzel', serif;
             font-size: 0.58rem;
-            letter-spacing: 0.35em;
+            letter-spacing: 0.38em;
             color: var(--text-muted);
             text-transform: uppercase;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .seed-questions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 2.5rem;
         }
 
         .seed-btn {
             background: transparent;
-            border: 1px solid var(--border-gold);
+            border: 1px solid var(--border-dark);
             color: var(--text-dim);
-            font-family: 'EB Garamond', Georgia, serif;
-            font-size: 1rem;
-            font-style: italic;
-            padding: 0.85rem 1.25rem;
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 0.98rem;
+            font-weight: 400;
+            padding: 0.9rem 1.25rem;
             text-align: left;
             cursor: pointer;
-            transition: all 0.25s ease;
-            line-height: 1.4;
+            transition: all 0.2s ease;
+            line-height: 1.45;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .seed-btn::before {
+            content: '→';
+            color: var(--gold);
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
         }
 
         .seed-btn:hover {
             border-color: var(--gold);
-            color: var(--cream);
-            background: rgba(139,105,20,0.08);
-            padding-left: 1.6rem;
+            color: var(--text-on-dark);
+            background: rgba(154,120,32,0.09);
         }
 
-        .seed-btn::before {
-            content: '→ ';
-            color: var(--gold);
-            font-style: normal;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
+        .seed-btn:hover::before { transform: translateX(3px); }
 
-        .seed-btn:hover::before {
-            opacity: 1;
-        }
-
-        /* Chat window */
         .chat-window {
-            border: 1px solid var(--border-gold);
-            background: var(--bg-card);
-            min-height: 320px;
-            max-height: 520px;
+            border: 1px solid var(--border-dark);
+            background: #120f0a;
+            min-height: 300px;
+            max-height: 500px;
             overflow-y: auto;
-            padding: 1.5rem;
-            margin-bottom: 0;
+            padding: 1.75rem;
             scroll-behavior: smooth;
         }
 
-        .chat-window::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .chat-window::-webkit-scrollbar-track {
-            background: var(--bg);
-        }
-
-        .chat-window::-webkit-scrollbar-thumb {
-            background: var(--border-gold);
-        }
+        .chat-window::-webkit-scrollbar { width: 3px; }
+        .chat-window::-webkit-scrollbar-track { background: transparent; }
+        .chat-window::-webkit-scrollbar-thumb { background: var(--border-dark); }
 
         .chat-empty {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 200px;
+            min-height: 200px;
             color: var(--text-muted);
-            font-style: italic;
-            font-size: 1rem;
+            font-size: 0.95rem;
             text-align: center;
         }
 
-        /* Messages */
-        .message {
-            margin-bottom: 1.75rem;
-            animation: fadeUp 0.4s ease forwards;
-        }
-
-        .message:last-child {
-            margin-bottom: 0;
-        }
+        .message { margin-bottom: 2rem; animation: fadeUp 0.35s ease forwards; }
+        .message:last-child { margin-bottom: 0; }
 
         .message-role {
             font-family: 'Cinzel', serif;
@@ -346,36 +429,24 @@
             margin-bottom: 0.5rem;
         }
 
-        .message.user .message-role {
-            color: var(--gold);
-        }
-
-        .message.assistant .message-role {
-            color: var(--text-muted);
-        }
-
-        .message-text {
-            font-size: 1.05rem;
-            line-height: 1.75;
-            color: var(--text);
-        }
+        .message.user .message-role   { color: var(--gold-pale); }
+        .message.assistant .message-role { color: var(--text-muted); }
 
         .message.user .message-text {
+            font-size: 1rem;
+            font-weight: 400;
             color: var(--text-dim);
-            font-style: italic;
+            line-height: 1.7;
         }
 
         .message.assistant .message-text {
-            color: var(--text);
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--text-on-dark);
+            line-height: 1.8;
         }
 
-        /* Typing indicator */
-        .typing {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 0.5rem 0;
-        }
+        .typing { display: flex; align-items: center; gap: 5px; padding: 0.25rem 0; }
 
         .typing span {
             width: 6px;
@@ -388,12 +459,11 @@
         .typing span:nth-child(2) { animation-delay: 0.2s; }
         .typing span:nth-child(3) { animation-delay: 0.4s; }
 
-        /* Input area */
         .chat-input-area {
             display: flex;
-            border: 1px solid var(--border-gold);
+            border: 1px solid var(--border-dark);
             border-top: none;
-            background: var(--bg-card);
+            background: #1a1510;
         }
 
         .chat-input {
@@ -401,199 +471,393 @@
             background: transparent;
             border: none;
             outline: none;
-            color: var(--text);
-            font-family: 'EB Garamond', Georgia, serif;
-            font-size: 1.05rem;
+            color: var(--text-on-dark);
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1rem;
+            font-weight: 400;
             padding: 1rem 1.25rem;
             resize: none;
-            min-height: 54px;
+            min-height: 52px;
             max-height: 120px;
             line-height: 1.5;
         }
 
-        .chat-input::placeholder {
-            color: var(--text-muted);
-            font-style: italic;
-        }
+        .chat-input::placeholder { color: var(--text-muted); }
 
         .chat-send {
             background: transparent;
             border: none;
-            border-left: 1px solid var(--border-gold);
+            border-left: 1px solid var(--border-dark);
             color: var(--text-muted);
             cursor: pointer;
-            padding: 0 1.25rem;
+            padding: 0 1.5rem;
             font-family: 'Cinzel', serif;
-            font-size: 0.6rem;
-            letter-spacing: 0.25em;
+            font-size: 0.58rem;
+            font-weight: 600;
+            letter-spacing: 0.28em;
             text-transform: uppercase;
             transition: all 0.2s ease;
             white-space: nowrap;
         }
 
-        .chat-send:hover {
+        .chat-send:hover:not(:disabled) {
             color: var(--gold-light);
-            background: rgba(139,105,20,0.08);
+            background: rgba(154,120,32,0.1);
         }
 
-        .chat-send:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
+        .chat-send:disabled { opacity: 0.35; cursor: not-allowed; }
 
         /* ── FOOTER ── */
         .footer {
-            border-top: 1px solid var(--border);
-            padding: 2.5rem 2rem;
+            background: var(--bg-hero);
+            border-top: 1px solid var(--border-dark);
+            padding: 3rem 2rem;
             text-align: center;
         }
 
-        .footer p {
+        .footer-wordmark {
             font-family: 'Cinzel', serif;
-            font-size: 0.58rem;
-            letter-spacing: 0.3em;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        .footer .wordmark {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            letter-spacing: 0.2em;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
             color: var(--gold);
-            font-weight: 300;
             display: block;
             margin-bottom: 0.75rem;
         }
 
-        /* ── DIVIDER ── */
-        .section-divider {
+        .footer p {
+            font-family: 'Cinzel', serif;
+            font-size: 0.56rem;
+            letter-spacing: 0.28em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .section-rule {
             width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, transparent, var(--border-gold), transparent);
+            height: 56px;
+            background: linear-gradient(to bottom, transparent, var(--border-light), transparent);
             margin: 0 auto;
         }
 
-        /* ── ANIMATIONS ── */
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(16px); }
+            from { opacity: 0; transform: translateY(14px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-        }
-
         @keyframes pulse {
-            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-            40%            { transform: scale(1);   opacity: 1; }
+            0%, 80%, 100% { transform: scale(0.55); opacity: 0.35; }
+            40%            { transform: scale(1);    opacity: 1; }
         }
 
-        /* ── RESPONSIVE ── */
         @media (max-width: 640px) {
-            .hero-content { padding: 4rem 1.5rem 2.5rem; }
-            .orientation  { padding: 3.5rem 1.5rem 3rem; }
-            .chat-section { padding: 2rem 1.5rem 4rem; }
-            .scroll-hint  { display: none; }
+            .hero-content { padding: 4rem 1.5rem 3rem; }
+            .dark-band, .orientation, .lidar-section,
+            .diagrams-section, .chat-section { padding: 3.5rem 1.25rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ── HERO ── -->
+    <!-- HERO -->
     <section class="hero">
-        <img src="/static/hero.jpg" alt="Aerial reconstruction of Poverty Point, 1600 BCE">
+        <img src="/static/hero.jpg" alt="Aerial reconstruction of Poverty Point at 1600 BCE">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <p class="hero-eyebrow">UNESCO World Heritage Site · Louisiana · 1700–1100 BCE</p>
+            <p class="hero-eyebrow">UNESCO World Heritage Site &nbsp;·&nbsp; Louisiana &nbsp;·&nbsp; 1700 – 1100 BCE</p>
             <h1 class="hero-title">Poverty Point</h1>
-            <div class="hero-divider"></div>
-            <p class="hero-subtitle">A monument to human ingenuity — built 3,400 years ago by people we once thought incapable of it</p>
+            <div class="hero-rule"></div>
+            <p class="hero-subtitle">A monument built 3,400 years ago by hunter-gatherers — before the wheel reached the Americas, before metal tools, before agriculture took hold in this valley.</p>
         </div>
-        <p class="scroll-hint">Scroll to explore</p>
     </section>
 
-    <!-- ── ORIENTATION ── -->
+    <!-- DARK INTRO -->
+    <div class="dark-band">
+        <div class="dark-band-inner">
+            <span class="section-eyebrow">The Discovery</span>
+            <h2 class="section-title">What LiDAR Changed</h2>
+            <div class="gold-rule" style="margin: 0 auto 2rem;"></div>
+            <p>For decades, archaeologists working at Poverty Point could only see fragments — partial ridges, isolated mounds, features obscured by trees and time. The full scale of what had been built was not visible from the ground.</p>
+            <p>When LiDAR stripped away the vegetation, it revealed <strong>a precisely engineered complex stretching nearly a mile across</strong> — six concentric C-shaped ridges, a massive central plaza, and a bird-shaped mound larger than the Great Pyramid of Giza by volume.</p>
+            <div class="pull-quote">
+                <p>Poverty Point challenges everything we thought we knew about what hunter-gatherers could build — and why they would choose to.</p>
+            </div>
+            <p>The questions that followed have only deepened. Who organized this? What drew thousands of people here? And why did it stop?</p>
+        </div>
+    </div>
+
+    <!-- ORIENTATION -->
     <section class="orientation">
-        <span class="section-label">The Site</span>
-
-        <p>
-            Before the pyramids of Egypt were complete, a civilization arose in the lower Mississippi Valley and built something extraordinary. With no metal tools, no draft animals, and no agriculture to speak of, they moved <strong>over 53 million cubic feet of earth</strong> by hand — creating a complex of concentric ridges, plazas, and mounds that stretches nearly a mile across.
-        </p>
-
-        <blockquote class="hook">
-            "Poverty Point challenges everything we thought we knew about what hunter-gatherers could build — and why."
-        </blockquote>
-
-        <p>
-            For decades, archaeologists assumed it was a trade hub. Then LiDAR stripped away the trees and revealed the true scale. Now the questions have only deepened: Who were these people? What drew thousands of them here? And why did they stop?
-        </p>
-
-        <p>
-            This is a conversation about what we know, what we've inferred — and what remains one of the great mysteries of North American archaeology.
-        </p>
+        <div class="orientation-inner">
+            <span class="section-eyebrow">The Site</span>
+            <h2 class="section-title">3,400 Years Ago in Northeastern Louisiana</h2>
+            <div class="gold-rule"></div>
+            <p>The people who built Poverty Point left no written records. What we know comes from what they moved: <strong>over 53 million cubic feet of earth</strong>, carried in baskets by hand, shaped into a geometric precision that still registers from satellite altitude today.</p>
+            <p>They were not farmers. They were hunter-fisher-gatherers operating in one of the most resource-rich environments on the continent — the lower Mississippi Valley at peak post-glacial abundance. They traded across a network spanning from the Great Lakes to the Gulf Coast.</p>
+            <p>The UNESCO nomination file describes Poverty Point as outstanding universal value — not merely for its scale, but for what it proves: that social complexity, monumental ambition, and long-distance coordination are not the exclusive property of agricultural civilizations.</p>
+            <p>This is a conversation about what we know, what we have reasonably inferred, and what remains among the great unresolved questions in North American archaeology.</p>
+        </div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="section-rule"></div>
 
-    <!-- ── LIDAR ── -->
+    <!-- LIDAR -->
     <section class="lidar-section">
-        <span class="section-label">Ground Truth</span>
-        <div class="lidar-frame">
-            <img src="/static/lidar.jpg" alt="USGS LiDAR hillshade of Poverty Point earthworks">
-            <span class="lidar-badge">USGS 3DEP LiDAR · QL1 0.5m Resolution</span>
+        <div class="lidar-inner">
+            <div class="lidar-header">
+                <span class="section-eyebrow">Ground Truth</span>
+                <h2 class="section-title">The LiDAR Record</h2>
+                <div class="gold-rule"></div>
+            </div>
+            <div class="lidar-frame">
+                <img src="/static/lidar.jpg" alt="USGS LiDAR hillshade of Poverty Point earthworks">
+                <span class="lidar-badge">USGS 3DEP LiDAR &nbsp;·&nbsp; QL1 0.5m Resolution</span>
+            </div>
+            <p class="lidar-caption">
+                LiDAR hillshade revealing the concentric ridge system, Mound A, and the full extent of the earthworks —
+                invisible beneath centuries of vegetation until aerial survey.
+                <strong>This geometric record is the physical ground truth everything else is built on.</strong>
+            </p>
         </div>
-        <p class="lidar-caption">
-            LiDAR hillshade revealing the concentric ridge system, Mound A, and the full extent of the earthworks — 
-            invisible to the naked eye beneath centuries of vegetation. 
-            <strong>This is the geometric ground truth everything else is built on.</strong>
-        </p>
     </section>
 
-    <div class="section-divider"></div>
+    <!-- SCALE DIAGRAMS -->
+    <section class="diagrams-section">
+        <div class="diagrams-inner">
+            <div class="diagrams-header">
+                <span class="section-eyebrow">Physical Scale</span>
+                <h2 class="section-title">Understanding the Dimensions</h2>
+                <div class="gold-rule"></div>
+                <p style="font-size:1.05rem; color:var(--text-light-dim); max-width:600px;">All measurements sourced from UNESCO Nomination File 1435 and the ICOMOS Advisory Body Evaluation.</p>
+            </div>
 
-    <!-- ── CHAT ── -->
-    <section class="chat-section">
-        <div class="chat-header">
-            <span class="section-label">Ask DeepStrata</span>
-            <p class="chat-intro">Every answer draws exclusively from the Poverty Point knowledge base — UNESCO nomination file, ICOMOS evaluation, and primary archaeological sources. Uncertainty is treated as interesting, not hidden.</p>
-        </div>
+            <div class="diagrams-grid">
 
-        <!-- Seed questions -->
-        <div class="seed-questions">
-            <p class="seed-label">Start here</p>
-            <button class="seed-btn" onclick="askSeed(this)">What exactly did they build at Poverty Point — and how big is it really?</button>
-            <button class="seed-btn" onclick="askSeed(this)">How did hunter-gatherers build something this massive without agriculture or metal tools?</button>
-            <button class="seed-btn" onclick="askSeed(this)">What do we actually know about daily life here 3,400 years ago?</button>
-            <button class="seed-btn" onclick="askSeed(this)">What does LiDAR reveal that we couldn't see before?</button>
-            <button class="seed-btn" onclick="askSeed(this)">What are the biggest unanswered questions about Poverty Point?</button>
-        </div>
+                <!-- PLAN VIEW -->
+                <div class="diagram-card">
+                    <h3>Plan View — Concentric Ridge System</h3>
+                    <svg viewBox="0 0 440 410" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="440" height="410" fill="#1a1814"/>
 
-        <!-- Chat window -->
-        <div class="chat-window" id="chatWindow">
-            <div class="chat-empty" id="chatEmpty">
-                Ask a question above, or type your own below.
+                        <!-- Subtle grid -->
+                        <line x1="220" y1="10" x2="220" y2="400" stroke="#252010" stroke-width="0.5"/>
+                        <line x1="20" y1="245" x2="420" y2="245" stroke="#252010" stroke-width="0.5"/>
+
+                        <!-- Plaza -->
+                        <ellipse cx="220" cy="248" rx="62" ry="48" fill="#222018" stroke="#3a3020" stroke-width="0.75"/>
+                        <text x="220" y="252" text-anchor="middle" fill="#504838" font-family="Georgia,serif" font-size="9">PLAZA</text>
+
+                        <!-- Ridge 1 (innermost) -->
+                        <path d="M 158,178 A 72,68 0 0 1 282,178" fill="none" stroke="#8a7030" stroke-width="6" stroke-linecap="round"/>
+                        <path d="M 158,318 A 72,68 0 0 0 282,318" fill="none" stroke="#8a7030" stroke-width="6" stroke-linecap="round"/>
+                        <line x1="158" y1="178" x2="158" y2="318" stroke="#8a7030" stroke-width="6" stroke-linecap="round"/>
+
+                        <!-- Ridge 2 -->
+                        <path d="M 144,160 A 92,88 0 0 1 296,160" fill="none" stroke="#7a6228" stroke-width="5.5" stroke-linecap="round"/>
+                        <path d="M 144,336 A 92,88 0 0 0 296,336" fill="none" stroke="#7a6228" stroke-width="5.5" stroke-linecap="round"/>
+                        <line x1="144" y1="160" x2="144" y2="336" stroke="#7a6228" stroke-width="5.5" stroke-linecap="round"/>
+
+                        <!-- Ridge 3 -->
+                        <path d="M 130,141 A 113,108 0 0 1 310,141" fill="none" stroke="#6a5420" stroke-width="5" stroke-linecap="round"/>
+                        <path d="M 130,355" fill="none" stroke="#6a5420" stroke-width="5"/>
+                        <path d="M 130,355 A 113,108 0 0 0 310,355" fill="none" stroke="#6a5420" stroke-width="5" stroke-linecap="round"/>
+                        <line x1="130" y1="141" x2="130" y2="355" stroke="#6a5420" stroke-width="5" stroke-linecap="round"/>
+
+                        <!-- Ridge 4 -->
+                        <path d="M 114,120 A 135,130 0 0 1 326,120" fill="none" stroke="#5a4818" stroke-width="4.5" stroke-linecap="round"/>
+                        <path d="M 114,375 A 135,130 0 0 0 326,375" fill="none" stroke="#5a4818" stroke-width="4.5" stroke-linecap="round"/>
+                        <line x1="114" y1="120" x2="114" y2="375" stroke="#5a4818" stroke-width="4.5" stroke-linecap="round"/>
+
+                        <!-- Ridge 5 -->
+                        <path d="M 98,100 A 157,152 0 0 1 342,100" fill="none" stroke="#4a3c14" stroke-width="4" stroke-linecap="round"/>
+                        <line x1="98" y1="100" x2="98" y2="393" stroke="#4a3c14" stroke-width="4" stroke-linecap="round"/>
+
+                        <!-- Ridge 6 (outermost) -->
+                        <path d="M 82,80 A 178,174 0 0 1 358,80" fill="none" stroke="#3a3010" stroke-width="3.5" stroke-linecap="round"/>
+                        <line x1="82" y1="80" x2="82" y2="402" stroke="#3a3010" stroke-width="3.5" stroke-linecap="round"/>
+
+                        <!-- MOUND A bird effigy — upper left -->
+                        <g transform="translate(86,52)">
+                            <ellipse cx="0" cy="0" rx="26" ry="12" fill="#9a7820" opacity="0.88"/>
+                            <ellipse cx="-16" cy="-8" rx="20" ry="6" fill="#9a7820" opacity="0.7" transform="rotate(-18,-16,-8)"/>
+                            <ellipse cx="16" cy="-8" rx="20" ry="6" fill="#9a7820" opacity="0.7" transform="rotate(18,16,-8)"/>
+                            <circle cx="26" cy="0" r="6" fill="#9a7820" opacity="0.82"/>
+                            <text x="0" y="24" text-anchor="middle" fill="#c8a030" font-family="Georgia,serif" font-size="8" font-weight="bold">MOUND A</text>
+                            <text x="0" y="34" text-anchor="middle" fill="#706858" font-family="Georgia,serif" font-size="7">Bird effigy · 22m tall</text>
+                        </g>
+
+                        <!-- Mound B -->
+                        <circle cx="358" cy="190" r="8" fill="#6a5420" opacity="0.8"/>
+                        <text x="370" y="194" fill="#906830" font-family="Georgia,serif" font-size="8">Mound B</text>
+
+                        <!-- Mound E -->
+                        <circle cx="352" cy="296" r="6" fill="#6a5420" opacity="0.7"/>
+                        <text x="362" y="300" fill="#906830" font-family="Georgia,serif" font-size="8">Mound E</text>
+
+                        <!-- Bayou Macon (east side) -->
+                        <path d="M 415,60 Q 420,180 418,300 Q 415,360 412,400" fill="none" stroke="#2a3828" stroke-width="6" opacity="0.6"/>
+                        <text x="430" y="240" fill="#3a4830" font-family="Georgia,serif" font-size="8" transform="rotate(90,430,240)">BAYOU MACON</text>
+
+                        <!-- Overall width dimension -->
+                        <line x1="82" y1="405" x2="358" y2="405" stroke="#9a7820" stroke-width="0.75" stroke-dasharray="3,3"/>
+                        <line x1="82" y1="401" x2="82" y2="409" stroke="#9a7820" stroke-width="1.25"/>
+                        <line x1="358" y1="401" x2="358" y2="409" stroke="#9a7820" stroke-width="1.25"/>
+                        <text x="220" y="420" text-anchor="middle" fill="#9a7820" font-family="Georgia,serif" font-size="9">approx. 1.2 km across</text>
+
+                        <!-- Ridge count label -->
+                        <text x="22" y="240" fill="#9a7820" font-family="Georgia,serif" font-size="8">6 ridges</text>
+                        <line x1="58" y1="238" x2="82" y2="238" stroke="#9a7820" stroke-width="0.75"/>
+
+                        <!-- North arrow -->
+                        <g transform="translate(408,42)">
+                            <line x1="0" y1="14" x2="0" y2="-14" stroke="#706858" stroke-width="1.5"/>
+                            <polygon points="0,-14 -4,-5 4,-5" fill="#9a7820"/>
+                            <text x="0" y="24" text-anchor="middle" fill="#706858" font-family="Georgia,serif" font-size="9">N</text>
+                        </g>
+                    </svg>
+                    <p class="diagram-note">Six concentric C-shaped ridges open eastward toward Bayou Macon. Mound A (bird effigy) stands to the northwest. The central plaza covers roughly 37 acres.</p>
+                </div>
+
+                <!-- CROSS SECTION -->
+                <div class="diagram-card">
+                    <h3>Cross Section — Mound &amp; Ridge Heights</h3>
+                    <svg viewBox="0 0 440 410" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="440" height="410" fill="#1a1814"/>
+
+                        <!-- Ground baseline -->
+                        <line x1="40" y1="320" x2="425" y2="320" stroke="#3a3020" stroke-width="1.5"/>
+
+                        <!-- Y axis -->
+                        <line x1="55" y1="25" x2="55" y2="325" stroke="#3a3020" stroke-width="1"/>
+
+                        <!-- Scale: 1m = 13px. Baseline y=320. -->
+                        <!-- Y gridlines and labels -->
+                        <line x1="51" y1="307" x2="59" y2="307" stroke="#3a3020" stroke-width="0.75"/>
+                        <text x="48" y="310" text-anchor="end" fill="#706858" font-family="Georgia,serif" font-size="9">1m</text>
+
+                        <line x1="51" y1="294" x2="59" y2="294" stroke="#3a3020" stroke-width="0.75"/>
+                        <text x="48" y="297" text-anchor="end" fill="#706858" font-family="Georgia,serif" font-size="9">2m</text>
+
+                        <line x1="51" y1="255" x2="59" y2="255" stroke="#3a3020" stroke-width="0.75"/>
+                        <text x="48" y="258" text-anchor="end" fill="#706858" font-family="Georgia,serif" font-size="9">5m</text>
+
+                        <line x1="51" y1="190" x2="59" y2="190" stroke="#3a3020" stroke-width="0.75"/>
+                        <text x="48" y="193" text-anchor="end" fill="#706858" font-family="Georgia,serif" font-size="9">10m</text>
+
+                        <line x1="51" y1="125" x2="59" y2="125" stroke="#3a3020" stroke-width="0.75"/>
+                        <text x="48" y="128" text-anchor="end" fill="#706858" font-family="Georgia,serif" font-size="9">15m</text>
+
+                        <line x1="51" y1="60" x2="59" y2="60" stroke="#3a3020" stroke-width="0.75"/>
+                        <text x="48" y="63" text-anchor="end" fill="#706858" font-family="Georgia,serif" font-size="9">20m</text>
+
+                        <!-- Horizontal gridlines -->
+                        <line x1="55" y1="255" x2="425" y2="255" stroke="#252010" stroke-width="0.5"/>
+                        <line x1="55" y1="190" x2="425" y2="190" stroke="#252010" stroke-width="0.5"/>
+                        <line x1="55" y1="125" x2="425" y2="125" stroke="#252010" stroke-width="0.5"/>
+                        <line x1="55" y1="60" x2="425" y2="60" stroke="#252010" stroke-width="0.5"/>
+
+                        <!-- MOUND A — 22m tall = 286px, top at 320-286=34. Base ~100px wide -->
+                        <path d="M 65,320 Q 80,34 105,320" fill="#9a7820" opacity="0.82"/>
+                        <!-- Wing suggestions on Mound A -->
+                        <path d="M 70,210 Q 58,175 50,192 Q 60,210 70,220" fill="#8a6818" opacity="0.45"/>
+                        <path d="M 100,210 Q 112,175 120,192 Q 110,210 100,220" fill="#8a6818" opacity="0.45"/>
+
+                        <!-- Mound A label -->
+                        <text x="85" y="315" text-anchor="middle" fill="#c8a030" font-family="Georgia,serif" font-size="8" font-weight="bold">MOUND A</text>
+
+                        <!-- Mound A height annotation -->
+                        <line x1="62" y1="34" x2="62" y2="320" stroke="#9a7820" stroke-width="0.75" stroke-dasharray="2,4"/>
+                        <line x1="58" y1="34" x2="66" y2="34" stroke="#9a7820" stroke-width="1"/>
+                        <text x="40" y="180" fill="#9a7820" font-family="Georgia,serif" font-size="8" transform="rotate(-90,40,180)">22 metres</text>
+
+                        <!-- Plaza flat area -->
+                        <rect x="108" y="316" width="58" height="4" fill="#252018" opacity="0.7"/>
+                        <text x="137" y="338" text-anchor="middle" fill="#504838" font-family="Georgia,serif" font-size="8">Plaza</text>
+
+                        <!-- Six ridge cross-sections — each ~2m = 26px tall, ~22px wide, spaced 28px apart -->
+                        <!-- Ridge tops at y = 320 - 26 = 294 -->
+                        <path d="M 170,320 Q 183,293 196,320 Z" fill="#8a7030" opacity="0.92"/>
+                        <path d="M 200,320 Q 213,292 226,320 Z" fill="#7a6228" opacity="0.86"/>
+                        <path d="M 230,320 Q 243,292 256,320 Z" fill="#6a5420" opacity="0.80"/>
+                        <path d="M 260,320 Q 273,293 286,320 Z" fill="#5a4818" opacity="0.75"/>
+                        <path d="M 290,320 Q 303,294 316,320 Z" fill="#4a3c14" opacity="0.70"/>
+                        <path d="M 320,320 Q 333,295 346,320 Z" fill="#3a3010" opacity="0.65"/>
+
+                        <!-- Ridge height annotation -->
+                        <line x1="183" y1="293" x2="183" y2="320" stroke="#9a7820" stroke-width="0.75" stroke-dasharray="2,3"/>
+                        <line x1="179" y1="293" x2="187" y2="293" stroke="#9a7820" stroke-width="1"/>
+                        <line x1="179" y1="320" x2="187" y2="320" stroke="#9a7820" stroke-width="1"/>
+                        <text x="192" y="310" fill="#9a7820" font-family="Georgia,serif" font-size="8">1.5–2m</text>
+
+                        <!-- Ridge labels -->
+                        <text x="183" y="344" text-anchor="middle" fill="#706858" font-family="Georgia,serif" font-size="8">R1</text>
+                        <text x="213" y="344" text-anchor="middle" fill="#706858" font-family="Georgia,serif" font-size="8">R2</text>
+                        <text x="243" y="344" text-anchor="middle" fill="#706858" font-family="Georgia,serif" font-size="8">R3</text>
+                        <text x="273" y="344" text-anchor="middle" fill="#706858" font-family="Georgia,serif" font-size="8">R4</text>
+                        <text x="303" y="344" text-anchor="middle" fill="#706858" font-family="Georgia,serif" font-size="8">R5</text>
+                        <text x="333" y="344" text-anchor="middle" fill="#706858" font-family="Georgia,serif" font-size="8">R6</text>
+
+                        <!-- Ridge span dimension -->
+                        <line x1="170" y1="360" x2="346" y2="360" stroke="#9a7820" stroke-width="0.75" stroke-dasharray="3,3"/>
+                        <line x1="170" y1="356" x2="170" y2="364" stroke="#9a7820" stroke-width="1.25"/>
+                        <line x1="346" y1="356" x2="346" y2="364" stroke="#9a7820" stroke-width="1.25"/>
+                        <text x="258" y="376" text-anchor="middle" fill="#9a7820" font-family="Georgia,serif" font-size="9">approx. 800m total ridge span</text>
+
+                        <!-- Mound B (smaller) -->
+                        <path d="M 375,320 Q 386,229 397,320" fill="#6a5420" opacity="0.75"/>
+                        <text x="386" y="315" text-anchor="middle" fill="#906830" font-family="Georgia,serif" font-size="8">Mound B</text>
+                        <text x="386" y="305" text-anchor="middle" fill="#604820" font-family="Georgia,serif" font-size="7">~7m</text>
+
+                        <!-- Note -->
+                        <text x="220" y="400" text-anchor="middle" fill="#504838" font-family="Georgia,serif" font-size="8">Schematic — not to horizontal scale</text>
+                    </svg>
+                    <p class="diagram-note">Mound A rises 22 metres — comparable in volume to the Great Pyramid of Giza. The six residential ridges stand 1.5 to 2 metres tall and up to 80 metres wide at their base.</p>
+                </div>
+
             </div>
         </div>
+    </section>
 
-        <!-- Input -->
-        <div class="chat-input-area">
-            <textarea 
-                class="chat-input" 
-                id="chatInput" 
-                placeholder="Ask anything about Poverty Point…"
-                rows="1"
-                onkeydown="handleKey(event)"
-                oninput="autoResize(this)"
-            ></textarea>
-            <button class="chat-send" id="sendBtn" onclick="sendMessage()">Send</button>
+    <!-- CHAT -->
+    <section class="chat-section">
+        <div class="chat-inner">
+            <div class="chat-header">
+                <span class="section-eyebrow">Ask DeepStrata</span>
+                <h2 class="section-title">Explore the Knowledge Base</h2>
+                <div class="gold-rule"></div>
+                <p>Every answer draws exclusively from the UNESCO nomination file, ICOMOS evaluation, and primary archaeological sources. Uncertainty is acknowledged — not hidden.</p>
+            </div>
+
+            <span class="seed-label">Start here</span>
+            <div class="seed-questions">
+                <button class="seed-btn" onclick="askSeed(this)">What exactly did they build at Poverty Point — and how big is it really?</button>
+                <button class="seed-btn" onclick="askSeed(this)">How did hunter-gatherers build something this massive without agriculture or metal tools?</button>
+                <button class="seed-btn" onclick="askSeed(this)">What do we actually know about daily life here 3,400 years ago?</button>
+                <button class="seed-btn" onclick="askSeed(this)">What does LiDAR reveal that we could not see before?</button>
+                <button class="seed-btn" onclick="askSeed(this)">What are the biggest unanswered questions about Poverty Point?</button>
+            </div>
+
+            <div class="chat-window" id="chatWindow">
+                <div class="chat-empty" id="chatEmpty">Select a question above or type your own below.</div>
+            </div>
+
+            <div class="chat-input-area">
+                <textarea
+                    class="chat-input"
+                    id="chatInput"
+                    placeholder="Ask anything about Poverty Point..."
+                    rows="1"
+                    onkeydown="handleKey(event)"
+                    oninput="autoResize(this)"
+                ></textarea>
+                <button class="chat-send" id="sendBtn" onclick="sendMessage()">Send</button>
+            </div>
         </div>
     </section>
 
-    <!-- ── FOOTER ── -->
+    <!-- FOOTER -->
     <footer class="footer">
-        <span class="wordmark">DeepStrata</span>
+        <span class="footer-wordmark">DEEPSTRATA</span>
         <p>Knowledge base sourced from UNESCO Nomination File 1435 &amp; ICOMOS Advisory Body Evaluation</p>
     </footer>
 
@@ -613,15 +877,13 @@
         }
 
         function askSeed(btn) {
-            const question = btn.textContent.trim();
-            document.getElementById('chatInput').value = question;
+            document.getElementById('chatInput').value = btn.textContent.trim();
             sendMessage();
         }
 
         function appendMessage(role, text) {
             const empty = document.getElementById('chatEmpty');
             if (empty) empty.remove();
-
             const win = document.getElementById('chatWindow');
             const div = document.createElement('div');
             div.className = `message ${role}`;
@@ -636,7 +898,6 @@
         function showTyping() {
             const empty = document.getElementById('chatEmpty');
             if (empty) empty.remove();
-
             const win = document.getElementById('chatWindow');
             const div = document.createElement('div');
             div.className = 'message assistant';
@@ -666,7 +927,6 @@
 
             appendMessage('user', text);
             conversationHistory.push({ role: 'user', content: text });
-
             showTyping();
 
             try {
@@ -675,10 +935,8 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ messages: conversationHistory })
                 });
-
                 const data = await res.json();
                 removeTyping();
-
                 if (data.response) {
                     appendMessage('assistant', data.response);
                     conversationHistory.push({ role: 'assistant', content: data.response });
