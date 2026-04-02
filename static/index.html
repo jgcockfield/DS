@@ -4,21 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DeepStrata — Poverty Point</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: Georgia, serif;
-            background: #0a0a0a;
-            color: #e8e0d0;
-            line-height: 1.7;
+        :root {
+            --gold: #8b6914;
+            --gold-light: #c8a84b;
+            --gold-pale: #e8d5a0;
+            --cream: #f0e6d0;
+            --text: #e8e0d0;
+            --text-dim: #c8b89a;
+            --text-muted: #8a7a65;
+            --bg: #0a0a0a;
+            --bg-mid: #111008;
+            --bg-card: #141210;
+            --border: #2a2418;
+            --border-gold: #3a2e14;
         }
 
-        /* HERO */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'EB Garamond', Georgia, serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ── HERO ── */
         .hero {
             position: relative;
             width: 100%;
             height: 100vh;
+            min-height: 600px;
             overflow: hidden;
         }
 
@@ -26,93 +46,654 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
+            object-position: center 40%;
+            display: block;
         }
 
         .hero-overlay {
             position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.15) 0%,
+                rgba(0,0,0,0.05) 40%,
+                rgba(5,4,2,0.6) 70%,
+                rgba(5,4,2,0.92) 100%
+            );
+        }
+
+        .hero-content {
+            position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 4rem 2rem 3rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            padding: 5rem 3rem 3.5rem;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.3s forwards;
         }
 
         .hero-title {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: normal;
-            letter-spacing: 0.05em;
-            color: #f5ede0;
-            margin-bottom: 0.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8rem, 6vw, 5.5rem);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            color: var(--cream);
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.5s forwards;
         }
 
         .hero-subtitle {
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-            color: #c8b89a;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-dim);
             font-style: italic;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.7s forwards;
         }
 
-        /* ORIENTATION */
+        .hero-divider {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 1.25rem 0;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.9s forwards;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            right: 3rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.5s forwards;
+        }
+
+        /* ── ORIENTATION ── */
         .orientation {
-            max-width: 800px;
+            max-width: 760px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem 4rem;
             text-align: center;
+        }
+
+        .section-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.4em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            display: block;
         }
 
         .orientation p {
-            font-size: 1.15rem;
-            color: #d4c9b5;
+            font-size: 1.2rem;
+            color: var(--text-dim);
             margin-bottom: 1.5rem;
+            font-weight: 400;
         }
 
-        .orientation .hook {
-            font-size: 1.3rem;
-            color: #e8dcc8;
+        .orientation p strong {
+            color: var(--cream);
+            font-weight: 400;
+        }
+
+        .hook {
+            font-size: 1.35rem !important;
+            color: var(--cream) !important;
             font-style: italic;
-            border-left: 3px solid #8b6914;
-            padding-left: 1.5rem;
+            border-left: 2px solid var(--gold);
+            padding: 1rem 2rem !important;
             text-align: left;
-            margin: 2rem 0;
+            margin: 2.5rem 0 !important;
+            background: linear-gradient(to right, rgba(139,105,20,0.08), transparent);
         }
 
-        /* LIDAR SECTION */
+        /* ── LIDAR ── */
         .lidar-section {
-            max-width: 1000px;
+            max-width: 960px;
             margin: 0 auto;
-            padding: 2rem 2rem 4rem;
+            padding: 2rem 2rem 5rem;
             text-align: center;
+        }
+
+        .lidar-frame {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .lidar-frame::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border: 1px solid var(--border-gold);
+            pointer-events: none;
+            z-index: 1;
         }
 
         .lidar-section img {
             width: 100%;
-            max-width: 800px;
-            border: 1px solid #333;
+            max-width: 860px;
+            display: block;
+            filter: brightness(0.9) contrast(1.05);
+        }
+
+        .lidar-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.55rem;
+            letter-spacing: 0.3em;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            background: rgba(10,8,4,0.85);
+            padding: 0.4rem 0.8rem;
+            border: 1px solid var(--border-gold);
         }
 
         .lidar-caption {
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            color: #8a7a65;
+            margin-top: 1.25rem;
+            font-size: 0.88rem;
+            color: var(--text-muted);
             font-style: italic;
+            line-height: 1.6;
         }
 
         .lidar-caption strong {
-            color: #a09080;
+            color: #907860;
+            font-style: normal;
+            font-weight: 400;
         }
 
-        /* CHAT SECTION */
+        /* ── CHAT SECTION ── */
         .chat-section {
-            max-width: 800px;
+            max-width: 780px;
             margin: 0 auto;
             padding: 2rem 2rem 6rem;
         }
 
-        .chat-intro {
+        .chat-header {
             text-align: center;
-            margin-bottom: 2rem;
-            color: #c8b89a;
+            margin-bottom: 3rem;
+        }
+
+        .chat-intro {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            font-style: italic;
+            margin-top: 0.75rem;
+        }
+
+        /* Seed questions */
+        .seed-questions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .seed-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.58rem;
+            letter-spacing: 0.35em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .seed-btn {
+            background: transparent;
+            border: 1px solid var(--border-gold);
+            color: var(--text-dim);
+            font-family: 'EB Garamond', Georgia, serif;
+            font-size: 1rem;
+            font-style: italic;
+            padding: 0.85rem 1.25rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            line-height: 1.4;
+        }
+
+        .seed-btn:hover {
+            border-color: var(--gold);
+            color: var(--cream);
+            background: rgba(139,105,20,0.08);
+            padding-left: 1.6rem;
+        }
+
+        .seed-btn::before {
+            content: '→ ';
+            color: var(--gold);
+            font-style: normal;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .seed-btn:hover::before {
+            opacity: 1;
+        }
+
+        /* Chat window */
+        .chat-window {
+            border: 1px solid var(--border-gold);
+            background: var(--bg-card);
+            min-height: 320px;
+            max-height: 520px;
+            overflow-y: auto;
+            padding: 1.5rem;
+            margin-bottom: 0;
+            scroll-behavior: smooth;
+        }
+
+        .chat-window::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .chat-window::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        .chat-window::-webkit-scrollbar-thumb {
+            background: var(--border-gold);
+        }
+
+        .chat-empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        /* Messages */
+        .message {
+            margin-bottom: 1.75rem;
+            animation: fadeUp 0.4s ease forwards;
+        }
+
+        .message:last-child {
+            margin-bottom: 0;
+        }
+
+        .message-role {
+            font-family: 'Cinzel', serif;
+            font-size: 0.55rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .message.user .message-role {
+            color: var(--gold);
+        }
+
+        .message.assistant .message-role {
+            color: var(--text-muted);
+        }
+
+        .message-text {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--text);
+        }
+
+        .message.user .message-text {
+            color: var(--text-dim);
             font-style: italic;
         }
 
-        /
+        .message.assistant .message-text {
+            color: var(--text);
+        }
+
+        /* Typing indicator */
+        .typing {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 0.5rem 0;
+        }
+
+        .typing span {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse 1.2s ease-in-out infinite;
+        }
+
+        .typing span:nth-child(2) { animation-delay: 0.2s; }
+        .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+        /* Input area */
+        .chat-input-area {
+            display: flex;
+            border: 1px solid var(--border-gold);
+            border-top: none;
+            background: var(--bg-card);
+        }
+
+        .chat-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text);
+            font-family: 'EB Garamond', Georgia, serif;
+            font-size: 1.05rem;
+            padding: 1rem 1.25rem;
+            resize: none;
+            min-height: 54px;
+            max-height: 120px;
+            line-height: 1.5;
+        }
+
+        .chat-input::placeholder {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .chat-send {
+            background: transparent;
+            border: none;
+            border-left: 1px solid var(--border-gold);
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0 1.25rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .chat-send:hover {
+            color: var(--gold-light);
+            background: rgba(139,105,20,0.08);
+        }
+
+        .chat-send:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        .footer p {
+            font-family: 'Cinzel', serif;
+            font-size: 0.58rem;
+            letter-spacing: 0.3em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .footer .wordmark {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.2em;
+            color: var(--gold);
+            font-weight: 300;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        /* ── DIVIDER ── */
+        .section-divider {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, var(--border-gold), transparent);
+            margin: 0 auto;
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+            40%            { transform: scale(1);   opacity: 1; }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 640px) {
+            .hero-content { padding: 4rem 1.5rem 2.5rem; }
+            .orientation  { padding: 3.5rem 1.5rem 3rem; }
+            .chat-section { padding: 2rem 1.5rem 4rem; }
+            .scroll-hint  { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+        <img src="/static/hero.jpg" alt="Aerial reconstruction of Poverty Point, 1600 BCE">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">UNESCO World Heritage Site · Louisiana · 1700–1100 BCE</p>
+            <h1 class="hero-title">Poverty Point</h1>
+            <div class="hero-divider"></div>
+            <p class="hero-subtitle">A monument to human ingenuity — built 3,400 years ago by people we once thought incapable of it</p>
+        </div>
+        <p class="scroll-hint">Scroll to explore</p>
+    </section>
+
+    <!-- ── ORIENTATION ── -->
+    <section class="orientation">
+        <span class="section-label">The Site</span>
+
+        <p>
+            Before the pyramids of Egypt were complete, a civilization arose in the lower Mississippi Valley and built something extraordinary. With no metal tools, no draft animals, and no agriculture to speak of, they moved <strong>over 53 million cubic feet of earth</strong> by hand — creating a complex of concentric ridges, plazas, and mounds that stretches nearly a mile across.
+        </p>
+
+        <blockquote class="hook">
+            "Poverty Point challenges everything we thought we knew about what hunter-gatherers could build — and why."
+        </blockquote>
+
+        <p>
+            For decades, archaeologists assumed it was a trade hub. Then LiDAR stripped away the trees and revealed the true scale. Now the questions have only deepened: Who were these people? What drew thousands of them here? And why did they stop?
+        </p>
+
+        <p>
+            This is a conversation about what we know, what we've inferred — and what remains one of the great mysteries of North American archaeology.
+        </p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ── LIDAR ── -->
+    <section class="lidar-section">
+        <span class="section-label">Ground Truth</span>
+        <div class="lidar-frame">
+            <img src="/static/lidar.jpg" alt="USGS LiDAR hillshade of Poverty Point earthworks">
+            <span class="lidar-badge">USGS 3DEP LiDAR · QL1 0.5m Resolution</span>
+        </div>
+        <p class="lidar-caption">
+            LiDAR hillshade revealing the concentric ridge system, Mound A, and the full extent of the earthworks — 
+            invisible to the naked eye beneath centuries of vegetation. 
+            <strong>This is the geometric ground truth everything else is built on.</strong>
+        </p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ── CHAT ── -->
+    <section class="chat-section">
+        <div class="chat-header">
+            <span class="section-label">Ask DeepStrata</span>
+            <p class="chat-intro">Every answer draws exclusively from the Poverty Point knowledge base — UNESCO nomination file, ICOMOS evaluation, and primary archaeological sources. Uncertainty is treated as interesting, not hidden.</p>
+        </div>
+
+        <!-- Seed questions -->
+        <div class="seed-questions">
+            <p class="seed-label">Start here</p>
+            <button class="seed-btn" onclick="askSeed(this)">What exactly did they build at Poverty Point — and how big is it really?</button>
+            <button class="seed-btn" onclick="askSeed(this)">How did hunter-gatherers build something this massive without agriculture or metal tools?</button>
+            <button class="seed-btn" onclick="askSeed(this)">What do we actually know about daily life here 3,400 years ago?</button>
+            <button class="seed-btn" onclick="askSeed(this)">What does LiDAR reveal that we couldn't see before?</button>
+            <button class="seed-btn" onclick="askSeed(this)">What are the biggest unanswered questions about Poverty Point?</button>
+        </div>
+
+        <!-- Chat window -->
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-empty" id="chatEmpty">
+                Ask a question above, or type your own below.
+            </div>
+        </div>
+
+        <!-- Input -->
+        <div class="chat-input-area">
+            <textarea 
+                class="chat-input" 
+                id="chatInput" 
+                placeholder="Ask anything about Poverty Point…"
+                rows="1"
+                onkeydown="handleKey(event)"
+                oninput="autoResize(this)"
+            ></textarea>
+            <button class="chat-send" id="sendBtn" onclick="sendMessage()">Send</button>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer">
+        <span class="wordmark">DeepStrata</span>
+        <p>Knowledge base sourced from UNESCO Nomination File 1435 &amp; ICOMOS Advisory Body Evaluation</p>
+    </footer>
+
+    <script>
+        const conversationHistory = [];
+
+        function autoResize(el) {
+            el.style.height = 'auto';
+            el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+        }
+
+        function handleKey(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        }
+
+        function askSeed(btn) {
+            const question = btn.textContent.trim();
+            document.getElementById('chatInput').value = question;
+            sendMessage();
+        }
+
+        function appendMessage(role, text) {
+            const empty = document.getElementById('chatEmpty');
+            if (empty) empty.remove();
+
+            const win = document.getElementById('chatWindow');
+            const div = document.createElement('div');
+            div.className = `message ${role}`;
+            div.innerHTML = `
+                <div class="message-role">${role === 'user' ? 'You' : 'DeepStrata'}</div>
+                <div class="message-text">${text.replace(/\n/g, '<br>')}</div>
+            `;
+            win.appendChild(div);
+            win.scrollTop = win.scrollHeight;
+        }
+
+        function showTyping() {
+            const empty = document.getElementById('chatEmpty');
+            if (empty) empty.remove();
+
+            const win = document.getElementById('chatWindow');
+            const div = document.createElement('div');
+            div.className = 'message assistant';
+            div.id = 'typingIndicator';
+            div.innerHTML = `
+                <div class="message-role">DeepStrata</div>
+                <div class="typing"><span></span><span></span><span></span></div>
+            `;
+            win.appendChild(div);
+            win.scrollTop = win.scrollHeight;
+        }
+
+        function removeTyping() {
+            const t = document.getElementById('typingIndicator');
+            if (t) t.remove();
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const text = input.value.trim();
+            if (!text) return;
+
+            input.value = '';
+            input.style.height = 'auto';
+            sendBtn.disabled = true;
+
+            appendMessage('user', text);
+            conversationHistory.push({ role: 'user', content: text });
+
+            showTyping();
+
+            try {
+                const res = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ messages: conversationHistory })
+                });
+
+                const data = await res.json();
+                removeTyping();
+
+                if (data.response) {
+                    appendMessage('assistant', data.response);
+                    conversationHistory.push({ role: 'assistant', content: data.response });
+                } else {
+                    appendMessage('assistant', 'Something went wrong. Please try again.');
+                }
+            } catch (err) {
+                removeTyping();
+                appendMessage('assistant', 'Unable to reach the server. Please try again.');
+            }
+
+            sendBtn.disabled = false;
+            input.focus();
+        }
+    </script>
+
+</body>
+</html>
